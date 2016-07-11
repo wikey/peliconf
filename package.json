@@ -1,0 +1,21 @@
+{
+  "name": "peliconf",
+  "version": "0.0.1",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-minify": "0.0.12",
+    "gulp-scss-lint": "^0.4.0",
+    "gulp-util": "^3.0.7",
+    "jshint": "^2.9.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "carloratm",
+  "license": "ISC"
+}

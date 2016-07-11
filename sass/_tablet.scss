@@ -1,0 +1,90 @@
+
+.container {
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.nagivation.navigation--main .navigation--main__list {
+    @include transition(all .2s);
+    @include transform(translateY(-100%));
+    @include opacity(0);
+    visibility: hidden;
+    background: $blue;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 999;
+
+    li {
+        display: block;
+        background: $blue;
+
+        &.current a {
+            @include box-shadow(none);
+            color: $white;
+        }
+
+        a {
+            display: block;
+            line-height: 20px;
+            text-align: center;
+            border-bottom: 1px solid tint($blue, 8);
+        }
+    }
+
+    &.active {
+        @include transform(translateY(0));
+        @include box-shadow(0 0 200px $black);
+        @include opacity(1);
+        visibility: visible;
+    }
+
+    .lang-menu {
+        position: relative;
+        right: 0;
+    }
+
+    .lang-menu__item {
+        display: inline-block;
+        width: 50%;
+
+        &:first-child {
+            border-right: 1px solid tint($blue, 8);
+        }
+    }
+}
+
+.navigation-hamburger {
+    display: block;
+
+    &.active {
+        &:before {
+            font-family: "Material Design Icons";
+            content: mdi("close");
+        }
+    }
+}
+
+.site-footer-navigation {
+    text-align: center;
+}
+
+.site-footer__social-links,
+.site-footer__copyright {
+    margin-top: $gutter * 2;
+    text-align: center;
+}
+
+.page-heading__title {
+    @include font-size(32);
+}
+
+.partner-diamond,
+.partner-platinum {
+    margin-bottom: $gutter;
+}
+
+.site-title {
+    @include font-size(48);
+}

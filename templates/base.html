@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+{% block head %}
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    {% if FEED_ALL_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+    {% endif %}
+    {% if FEED_ALL_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+    {% endif %}
+    {% if FEED_ATOM %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+    {% endif %}
+    {% if FEED_RSS %}
+        <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    {% endif %}
+    {% if CATEGORY_FEED_ATOM and category %}
+        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+    {% endif %}
+    {% if CATEGORY_FEED_RSS and category %}
+        <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+    {% endif %}
+    {% if TAG_FEED_ATOM and tag %}
+        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
+    {% endif %}
+    {% if TAG_FEED_RSS and tag %}
+        <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
+    {% endif %}
+{% endblock head %}
+    <link rel="stylesheet" type="text/css" href="{{ main_siteurl }}/theme/css/screen.css">
+    {% block extra_css %}{% endblock extra_css %}
+</head>
+
+<body>
+
+<header class="site-header"
+    style="background-image: url('{{ SITEURL }}/theme/images/{{ HEADER_BACKGROUND }}');">
+    <nav role="navigation" class="nagivation navigation--main">
+        <div class="container language-navigation-container">
+        <div class="grid">
+        <div class="s-12 last">
+            <a href="#" class="navigation-hamburger" id="js-navigation-hamburger"></a>
+            {% if BRANDING_LINK %}
+                <a href="{{ BRANDING_LINK.0 }}" class="branding-link">
+                    {% if BRANDING_LINK.1 %}
+                        <img src="{{ main_siteurl }}/theme/images/{{ BRANDING_LINK.2 }}"
+                            alt="{{ BRANDING_LINK.1 }}" />
+                    {% else %}
+                        {{ BRANDING_LINK.1 }}
+                    {% endif %}
+                </a>
+            {% endif %}
+            <ul id="js-navigation--main__list" class="navigation--main__list">
+                {% if DISPLAY_PAGES_ON_MENU %}
+                    {% for p in PAGES %}
+                    {% if not p.nav == 'footer' %}
+                        <li{% if p == page %} class="current"{% endif %}>
+                            <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a>
+                        </li>
+                    {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% if lang_siteurls %}
+                <li class="lang-menu">
+                    {% for lang, url in lang_siteurls.items() %}
+                        <a class="lang-menu__item
+                            {% if lang == DEFAULT_LANG %}lang-menu-item--current{% endif %}"
+                            href="{{ url }}/">{{ lang }}</a>
+                    {% endfor %}
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        </div>
+        </div>
+    </nav>
+    {% block page_header %}{% endblock %}
+</header>
+
+<main class="site-main {% block main_classes %}{% endblock %}">
+    {% block page_heading %}{% endblock %}
+
+    <section class="site-content">
+        {% block content %}
+        {% endblock %}
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+    <div class="grid">
+    <div class="s-12 m-12 l-7 last-s last-m">
+        <nav class="site-footer-navigation">
+        {% for p in PAGES %}
+        {% if p.nav == 'footer' %}
+            <a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a>
+        {% endif %}
+        {% endfor %}
+        {% for label, url in FOOTER_LINKS %}
+            <a href="{{ url }}">{{ label }}</a>
+        {% endfor %}
+        </nav>
+    </div>
+    <div class="s-12 m-12 l-5 last">
+        {% if SOCIAL_LINKS %}
+        <section class="site-footer__social-links">
+            {% for label, url, icon, hide_label in SOCIAL_LINKS %}
+            <a href="{{ url }}">
+                {% if icon %}
+                    <i class="mdi mdi-{{ icon }}"></i>
+                    {% if not hide_label %}
+                        {{ label }}
+                    {% endif %}
+                {% else %}
+                    {{ label }}
+                {% endif %}
+            </a>
+            {% endfor %}
+        </section>
+        {% endif %}
+        <p class="site-footer__copyright">
+            {{ COPYRIGHT }}
+        </p>
+    </div>
+    </div>
+    </div>
+</footer>
+
+{% block js_script %}{% endblock %}
+<script src="{{ main_siteurl }}/theme/js/app-min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+
+@function calculate-rem($size) {
+    @if $size != null {
+        @return ($size / 16) + rem;
+    } @else {
+        @return null;
+    }
+}
+
+@function calulate-px($size) {
+    @if $size != null {
+        @return ($size) + px;
+    } @else {
+        @return null;
+    }
+}
+

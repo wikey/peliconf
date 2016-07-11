@@ -1,0 +1,101 @@
+
+.site-news,
+.site-socialevents {
+    padding-top: $gutter * 4;
+    padding-bottom: $gutter * 4;
+}
+
+.news-list,
+.socialevents-list {
+    margin-top: $gutter;
+
+    li:last-child .news-article {
+        margin-bottom: 0;
+    }
+}
+
+.news-article__header__title {
+    @include font-size(20);
+}
+
+.news-article {
+    margin-bottom: $gutter;
+}
+
+.news-article__aside time {
+    @include font-size(14);
+    color: $beast;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.socialevent__when {
+    @include font-size(14);
+    color: $beast;
+    text-transform: capitalize;
+}
+
+.socialevent {
+    @include border-radius(3px);
+    background: $white;
+    border: 1px solid darken($wild-sand, 5);
+    padding: $gutter;
+    margin-bottom: $gutter;
+    position: relative;
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.socialevent__content {
+    width: 80%;
+    float: left;
+}
+
+.socialevent__map {
+    @include font-size(14);
+    width: 20%;
+    float: right;
+    text-align: center;
+    line-height: 1;
+    text-transform: uppercase;
+
+    a {
+        display: block;
+        text-align: center;
+    }
+
+    i {
+        @include font-size(48);
+        display: block;
+    }
+}
+
+.socialevent__title {
+    @include font-size(18);
+    margin: 0;
+    margin-top: $gutter / 2;
+}
+
+.socialevent__description {
+    @include font-size(12);
+    line-height: 1.2;
+    margin-top: $gutter / 2;
+}
+
+.socialevent__when {
+    margin-right: 5px;
+}
+
+.socialevent__where {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.socialevent__info {
+    @include font-size(12);
+    color: $beast;
+}

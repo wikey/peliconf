@@ -1,0 +1,47 @@
+
+.site-footer {
+    background: $blue;
+    color: $iron;
+    padding-top: $gutter * 4;
+    padding-bottom: $gutter * 4;
+}
+
+.site-footer__copyright {
+    @include font-size(12);
+    letter-spacing: .5px;
+    text-align: right;
+
+    a {
+        color: $white;
+
+        &:hover {
+            color: $yellow;
+        }
+    }
+}
+
+.site-footer__social-links {
+    text-align: right;
+    margin-bottom: $gutter;
+
+    a {
+        @include font-size(24);
+        margin-left: $gutter;
+        color: $white;
+
+        &:hover {
+            color: $yellow;
+        }
+    }
+}
+
+.site-footer-navigation a {
+    @include font-size(14);
+    text-transform: uppercase;
+    margin-right: $gutter;
+    color: $almost-white;
+
+    &:hover {
+        color: $yellow;
+    }
+}

@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block page_header %}
+    <section class="site-home-intro">
+        <div class="container">
+        <div class="grid">
+        <div class="s-12 last">
+            <p class="event-date-location">
+            {% if EVENT_DATE %}
+                <span class="event-date-location__date">
+                    <i class="mdi mdi-calendar"></i>
+                    {{ EVENT_DATE }}
+                </span>
+            {% endif %}
+            {% if EVENT_LOCATION %}
+                <span class="event-date-location__location">
+                    <i class="mdi mdi-map-marker"></i>
+                    {{ EVENT_LOCATION }}
+                </span>
+            {% endif %}
+            </p>
+            <h1 class="site-title">
+                <a href="{{ SITEURL }}/">{{ SITENAME }}</a>
+            </h1>
+        </div>
+        {% if EVENT_CTA_BUTTONS %}
+            {% include 'partials/cta.html' %}
+        {% endif %}
+        </div>
+        </div>
+        </div>
+    </section>
+    {% if SOCIAL_LINKS %}
+    <section class="site-header__social-links">
+        {% for label, url, icon, hide_label in SOCIAL_LINKS %}
+        <a href="{{ url }}">
+            {% if icon %}
+                <i class="mdi mdi-{{ icon }}"></i>
+                {% if not hide_label %}
+                    {{ label }}
+                {% endif %}
+            {% else %}
+                {{ label }}
+            {% endif %}
+        </a>
+        {% endfor %}
+    </section>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if EVENT_CLAIM %}
+<section class="site-claim">
+    {{ EVENT_CLAIM }}
+</section>
+{% endif %}
+
+<div class="container">
+<div class="grid">
+<div class="s-12 m-6 l-6 last-s">
+    <section class="site-news">
+        <header class="site-news__header">
+            <h2 class="small">
+                <i class="mdi mdi-newspaper"></i>
+                News
+            </h2>
+        </header>
+
+        <ol class="news-list">
+            {% for article in articles_page.object_list %}
+            <li>
+                <article class="news-article">
+                    <aside class="news-article__aside">
+                        <time datetime="{{ article.date.isoformat() }}">
+                            {{ article.locale_date }}
+                        </time>
+                    </aside>
+                    <header class="news-article__header">
+                        <h2 class="news-article__header__title">
+                            <a href="{{ main_siteurl }}/{{ article.url }}"
+                                rel="bookmark"
+                                title="{{ article.title|striptags }}">
+                                    {{ article.title }}
+                            </a>
+                        </h2>
+                    </header>
+                </article>
+            </li>
+            {% endfor %}
+        </ol>
+
+        {% if articles_page.has_other_pages() %}
+            {% include 'pagination.html' %}
+        {% endif %}
+    </section>
+</div>
+
+<div class="s-12 m-6 l-6 last">
+    <section class="site-socialevents">
+        <header class="site-socialevents__header">
+            <h2 class="small">
+                <i class="mdi mdi-beer"></i>
+                Social Events
+            </h2>
+        </header>
+
+        <div class="socialevents-list">
+            {% for e in SOCIAL_EVENTS %}
+            <div class="socialevent">
+                <div class="socialevent__content">
+                    <p class="socialevent__info">
+                        <span class="socialevent__when">
+                            <i class="mdi mdi-calendar"></i>
+                            {{ e.when }}
+                        </span>
+                        at
+                        <span class="socialevent__where">{{ e.where }}</span>
+                    </p>
+                    <h3 class="socialevent__title">{{ e.title }}</h3>
+                    <p class="socialevent__description">
+                        {{ e.description }}
+                    </p>
+                </div>
+                <div class="socialevent__map">
+                    <a href="{{ e.map }}">
+                        <i class="mdi mdi-google-maps"></i>
+                        map
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+</div>
+</div>
+
+{% if SPEAKERS %}
+<section class="site-speakers">
+    <div class="container">
+    <div class="grid">
+    <div class="s-12 last">
+        <h2 class="small site-speakers__title">Who's Talking</h2>
+    </div>
+    <div class="s-12 no-gutter last">
+    {% for name, picture in SPEAKERS %}
+        <div class="speaker">
+            {% if picture %}
+                <img src="/images/{{ picture }}" class="speaker__picture" />
+            {% else %}
+                <i class="mdi mdi-account-outline speaker__icon"></i>
+            {% endif%}
+            <h2 class="speaker__name">{{ name }}</h2>
+        </div>
+    {% endfor %}
+    </div>
+    </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="site-partners">
+    <div class="container">
+    <div class="grid">
+    <div class="s-12 last">
+        <h2 class="small site-partners__title">Sponsors</h2>
+    </div>
+    <div class="s-12 m-6 l-3 last-s">
+        <div class="partner-diamond">
+            <h2 class="small">Diamond Sponsors</h2>
+            {% for p in EVENT_PARTNERS['diamond'] %}
+                {% include 'partials/partner-link.html' %}
+            {% endfor %}
+            <a href="{{ SITEURL }}/pages/partnership.html" class="partner-link partner-link--become">
+                Become a sponsor!
+            </a>
+        </div>
+    </div>
+    <div class="s-12 m-6 l-3 last-s last-m">
+        <div class="partner-platinum">
+            <h2 class="small">Platinum Sponsors</h2>
+            {% for p in EVENT_PARTNERS['platinum'] %}
+                {% include 'partials/partner-link.html' %}
+            {% endfor %}
+            <a href="{{ SITEURL }}/pages/partnership.html" class="partner-link partner-link--become">
+                Become a sponsor!
+            </a>
+        </div>
+    </div>
+    <div class="s-12 m-6 l-3 last-s">
+        <div class="partner-gold">
+            <h2 class="small">Gold Sponsors</h2>
+            {% for p in EVENT_PARTNERS['gold'] %}
+                {% include 'partials/partner-link.html' %}
+            {% endfor %}
+            <a href="{{ SITEURL }}/pages/partnership.html" class="partner-link partner-link--become">
+                Become a sponsor!
+            </a>
+        </div>
+    </div>
+    <div class="s-12 m-6 l-3 last">
+        <div class="partner-silver">
+            <h2 class="small">Silver Sponsors</h2>
+            {% for p in EVENT_PARTNERS['silver'] %}
+                {% include 'partials/partner-link.html' %}
+            {% endfor %}
+            <a href="{{ SITEURL }}/pages/partnership.html" class="partner-link partner-link--become">
+                Become a sponsor!
+            </a>
+        </div>
+    </div>
+    <div class="s-12 last">
+        <div class="partner-media ">
+            <h2 class="small partner-media__title">Media Partner</h2>
+            {% for p in EVENT_PARTNERS['media'] %}
+                <a href="{{ p.1 }}" class="partner-media-link">
+                    <img src="{{ main_siteurl }}/theme/images/{{ p.2 }}"
+                        class="partner-media-link__img" alt="{{ p.0 }}" />
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
+{% endblock content %}

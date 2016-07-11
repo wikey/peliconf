@@ -1,0 +1,41 @@
+////////////////////////////////////////////////////////////////////////////////
+// Colors variables
+////////////////////////////////////////////////////////////////////////////////
+
+$black:             #000;
+$mine-shaft:        #333;
+$beast:             #666;
+$iron:              #aaa;
+$silver:            #ccc;
+$wild-sand:         #f0f0f0;
+$grey-light:        #dfdfdf;
+$grey-dark:         #404040;
+$grey-medium:       #6e8898;
+$grey-medium-dark:  #404040;
+$almost-white:      #f8f8f8;
+$white:             #fff;
+$blue:              #10233c;
+$blueish:           #272c4f;
+$yellow:            #39d1b3;
+$admon-note:        #2f77d1;
+$admon-warning:     #f4d31e;
+$admon-error:       #d11149;
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Fonts
+////////////////////////////////////////////////////////////////////////////////
+
+@import url(https://fonts.googleapis.com/css?family=Oxygen:400,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+$main-font: "Oxygen", Helvetica, Arial, sans-serif;
+$heading-font: "Montserrat", Helvetica, Arial, sans-serif;
+$mono-font: "monospace";
+$base-line: 16;
+$scale-factor: 1.4;
+$line-height: 1.4;
+$line-height-headings: 1.1;
+

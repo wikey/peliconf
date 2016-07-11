@@ -1,0 +1,35 @@
+.site-speakers {
+    @include background-image(linear-gradient(to bottom right, $yellow, tint($yellow, 40)));
+    text-align: center;
+    padding-bottom: $gutter * 4 - ($gutter / 2);
+}
+
+.site-speakers__title {
+    padding-top: $gutter * 4;
+    padding-bottom: $gutter * 2 - ($gutter / 2);
+    margin-bottom: 0;
+}
+
+.speaker {
+    @include border-radius(3px);
+    display: inline-block;
+    border: 1px solid rgba($white, .5);
+    padding: $gutter;
+    margin: $gutter / 2;
+}
+
+.speaker__picture {
+    width: auto;
+    height: 80px;
+}
+
+.speaker__name {
+    @include font-size(16);
+    margin: $gutter 0 0 0;
+    padding: 0;
+    text-transform: none;
+}
+
+.speaker__icon {
+    @include font-size(79);
+}

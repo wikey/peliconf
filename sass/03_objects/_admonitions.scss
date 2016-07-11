@@ -1,0 +1,46 @@
+
+@mixin admon($bc, $c, $icon) {
+    @include border-radius(3px);
+    @include box-shadow(0 2px 2px 0 rgba($mine-shaft, .3));
+    @include font-size(14);
+    padding: $gutter $gutter $gutter $gutter * 3;
+    margin: 0 auto;
+    margin-bottom: $gutter * 2;
+    position: relative;
+    background: $bc;
+    color: $c;
+    width: 80%;
+
+    @media only screen and (max-width: $screen-s) {
+        width: 100%;
+    }
+
+    p {
+        margin: 0 !important;
+    }
+
+    .admonition-title {
+        @include font-size(0);
+        position: absolute;
+        top: 5px;
+        left: 5px;
+
+        &:before {
+            font: normal normal normal 48px/1 "Material Design Icons";
+            content: mdi($icon);
+            color: lighten($bc, 30);
+        }
+    }
+}
+
+.note {
+    @include admon($admon-note, $white, "information");
+}
+
+.warning {
+    @include admon($admon-warning, $black, "exclamation");
+}
+
+.error {
+    @include admon($admon-error, $white, "exclamation");
+}

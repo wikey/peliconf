@@ -1,0 +1,32 @@
+.form-field-container {
+    margin-bottom: $gutter;
+}
+
+.form-label {
+    @include font-size(13);
+    font-weight: bold;
+    display: block;
+    margin-bottom: $gutter / 4;
+}
+
+.upload-image {
+    @extend %centered-content;
+    @include border-radius(5px);
+    @include flex-direction(column);
+    @include font-size(13);
+    background: $white;
+    border: 1px dashed $grey-medium;
+    cursor: pointer;
+    min-height: 150px;
+    padding: $gutter;
+    text-align: center;
+
+    .icon {
+        @include font-size(32);
+        color: $blue;
+    }
+
+    &:hover {
+        border: 1px dashed $blue;
+    }
+}

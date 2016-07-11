@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block head %}
+  {{ super() }}
+  {% for keyword in article.keywords %}
+    <meta name="keywords" content="{{keyword}}" />
+  {% endfor %}
+
+  {% for description in article.description %}
+    <meta name="description" content="{{description}}" />
+  {% endfor %}
+
+  {% for tag in article.tags %}
+    <meta name="tags" content="{{tag}}" />
+  {% endfor %}
+
+{% endblock %}
+
+{% block page_heading %}
+<header class="page-heading">
+    <h1 class="page-heading__title">{{ article.title }}</h1>
+</header>
+{% endblock %}
+
+{% block main_classes %}main-page{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="grid">
+<div class="s-12 last">
+
+    {{ article.content }}
+
+</div>
+</div>
+</div>
+{% endblock %}

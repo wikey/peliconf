@@ -1,0 +1,10 @@
+<div class="s-12 last">
+    <section class="site-cta">
+    {% for label, url, primary  in EVENT_CTA_BUTTONS %}
+        <a href="{{ url }}"
+            class="btn btn--{% if primary %}primary{% else %}secondary{% endif %}">
+            {{ label }}
+        </a>
+    {% endfor %}
+    </section>
+</div>

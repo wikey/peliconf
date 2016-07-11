@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{%endblock%}
+
+{% block page_header %}{% endblock %}
+
+{% block page_heading %}
+<header class="page-heading">
+    <h1 class="page-heading__title">{{ page.title }}</h1>
+</header>
+{% endblock %}
+
+{% block main_classes %}main-page{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="grid">
+<div class="s-12 last">
+
+    {{ page.content }}
+
+	{% if page.modified %}
+		<p>
+		Last updated: {{ page.locale_modified }}
+		</p>
+	{% endif %}
+
+</div>
+</div>
+</div>
+{% endblock %}

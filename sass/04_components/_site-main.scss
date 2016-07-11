@@ -1,0 +1,134 @@
+.site-claim {
+    @include box-shadow(0 1px 4px rgba($beast, .3));
+    @include border-radius(2px);
+    background: $white;
+    margin: 0 auto;
+    width: 700px;
+    padding: $gutter * 2;
+    position: relative;
+    top: -10px;
+    z-index: 99;
+
+    @media only screen and (max-width: 700px) {
+        width: 90%;
+    }
+
+    @media only screen and (max-width: 550px) {
+        width: 100%;
+    }
+}
+
+.site-main {
+    background: $almost-white;
+}
+
+%simple-list {
+    list-style-position: inside;
+    margin-bottom: $gutter * 2;
+    padding-left: $gutter;
+}
+
+.main-page .site-content {
+    padding-top: $gutter * 4;
+    padding-bottom: $gutter * 4;
+    text-align: justify;
+
+    iframe {
+        width: 100%;
+    }
+
+    h2 {
+        @include font-size(20);
+        margin-top: $gutter * 2;
+        margin-bottom: $gutter;
+    }
+
+    p {
+        margin-bottom: $gutter;
+        line-height: 1.6;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    .section {
+        margin-top: $gutter * 2;
+        margin-bottom: $gutter * 2;
+    }
+
+    ul {
+        line-height: 1.6;
+
+        &.simple {
+            @extend %simple-list;
+            list-style-type: square;
+        }
+    }
+
+    ol {
+        line-height: 1.6;
+
+        &.simple {
+            @extend %simple-list;
+            list-style-type: decimal;
+        }
+    }
+
+    dl {
+        margin-bottom: $gutter * 2;
+    }
+
+    dt {
+        @include font-size(18);
+        color: $blue;
+    }
+
+    dd {
+        padding-left: $gutter * 2;
+        margin-bottom: $gutter / 2;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    tt, code {
+        font-family: $mono-font;
+    }
+
+    pre {
+        @include border-radius(3px);
+        @include font-size(14);
+        line-height: 1.5;
+        font-family: $mono-font;
+        margin-top: $gutter * 2;
+        margin-bottom: $gutter * 2;
+        padding: $gutter;
+        background: $white;
+        color: $black;
+    }
+
+    table {
+        @include font-size(14);
+        width: 100%;
+
+        caption {
+            font-weight: 700;
+            padding: $gutter 0;
+            text-align: left;
+        }
+
+        th {
+            padding: $gutter;
+            color: $white;
+            background: $blue;
+        }
+
+        td {
+            border-bottom: 1px solid lighten($iron, 15);
+            padding: $gutter;
+        }
+    }
+}
+

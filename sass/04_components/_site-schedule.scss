@@ -1,0 +1,112 @@
+
+.schedule {
+    @include font-size(14);
+    text-align: left;
+
+    p {
+        margin: 0 !important;
+        line-height: 1.2 !important;
+    }
+}
+
+.schedule-item {
+    border-top: 1px solid $silver;
+    padding: $gutter * 2 0 $gutter * 2 $gutter * 4;
+    position: relative;
+
+    &:after {
+        display: table;
+        clear: both;
+        content: "";
+    }
+}
+
+@mixin schedule-item-break($icon) {
+    .schedule-item__talk__title {
+        @include font-size(16);
+        color: $mine-shaft;
+        font-family: $heading-font;
+        text-transform: none;
+        font-weight: 400;
+        padding: 0;
+
+        &:before {
+            content: mdi($icon);
+            font-family: "Material Design Icons";
+            margin-right: 10px;
+        }
+    }
+}
+
+.schedule-item--coffe {
+    @include schedule-item-break("coffee");
+}
+
+.schedule-item--lunch {
+    @include schedule-item-break("food-fork-drink");
+}
+
+.schedule-item--beer {
+    @include schedule-item-break("beer");
+}
+
+.schedule-item__when {
+    position: absolute;
+    top: $gutter * 2;
+    left: $gutter;
+}
+
+.schedule-item__talk {
+    float: left;
+    padding: 0 $gutter 0 0;
+
+    a {
+        text-decoration: none !important;
+    }
+}
+
+.schedule-item__talk__title {
+    @include font-size(16);
+    color: $blue;
+    font-weight: 700;
+    padding: 0;
+}
+
+.schedule-item__talk__speakers {
+    @include font-size(16);
+    padding-top: $gutter / 2;
+}
+
+.schedule-item__talk__track {
+    padding-bottom: $gutter;
+    color: lighten($beast, 10);
+    font-family: $heading-font;
+    text-transform: uppercase;
+}
+
+.schedule-item__talk__info {
+    padding-top: $gutter;
+    color: lighten($beast, 10);
+}
+
+@mixin span-icon($i) {
+    margin-right: $gutter / 2;
+
+    &:before {
+        content: mdi($i);
+        font-family: "Material Design Icons";
+        margin-right: 5px;
+    }
+}
+
+.schedule-item__talk__info__level {
+    @include span-icon("book-open-variant");
+}
+
+.schedule-item__talk__info__language {
+    @include span-icon("flag-variant");
+}
+
+.schedule-item__talk__info__duration {
+    @include span-icon("clock");
+}

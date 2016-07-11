@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }}{%endblock%}
+
+{% block page_header %}{% endblock %}
+
+{% block page_heading %}
+<header class="page-heading">
+    <h1 class="page-heading__title">{{ page.title }}</h1>
+</header>
+{% endblock %}
+
+{% block main_classes %}main-page schedule-page{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="grid">
+<div class="s-12 last">
+
+    <section class="schedule">
+    {% for when, talks in SCHEDULE %}
+        <div class="schedule-item">
+            <p class="schedule-item__when">{{ when }}</p>
+            {% for t in talks %}
+            <div class="schedule-item__talk {{ t.extra_class }}"
+            style="width: calc(100% / {{ talks|length }})">
+                {% if t.track %}
+                <p class="schedule-item__talk__track">{{ t.track }}</p>
+                {% endif %}
+                <p class="schedule-item__talk__title">
+                    {% if t.speakers %}<a href="/pages/{{ t.slug }}.html">{{ t.title }}</a>
+                    {% else %}{{ t.title }}{% endif %}
+                </p>
+                {% if t.speakers %}
+                <p class="schedule-item__talk__speakers">
+                {% for s in t.speakers %}
+                    <span>{{ s }}</span>{% if not loop.last %},{% endif %}
+                {% endfor %}
+                </p>
+                {% endif %}
+                {% if t.duration or t.level or t.language %}
+                <p class="schedule-item__talk__info">
+                    {% if t.duration %}
+                    <span class="schedule-item__talk__info__duration">{{ t.duration }}</span>
+                    {% endif %}
+                    {% if t.level %}
+                    <span class="schedule-item__talk__info__level">{{ t.level }}</span>
+                    {% endif %}
+                    {% if t.language %}
+                    <span class="schedule-item__talk__info__language">{{ t.language }}</span>
+                    {% endif %}
+                </p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </section>
+
+    {{ page.content }}
+
+	{% if page.modified %}
+		<p>
+		Last updated: {{ page.locale_modified }}
+		</p>
+	{% endif %}
+
+</div>
+</div>
+</div>
+{% endblock %}

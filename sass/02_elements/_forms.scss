@@ -1,0 +1,77 @@
+////////////////////////////////////////////////////////////////////////////////
+// Basic Forms
+////////////////////////////////////////////////////////////////////////////////
+
+button,
+select,
+option,
+label,
+[type="radio"],
+[type="checkbox"] {
+    cursor: pointer;
+}
+
+input,
+textarea,
+select,
+button {
+    &:focus {
+        outline: none;
+    }
+}
+
+[type="text"],
+[type="number"],
+[type="email"],
+[type="password"],
+textarea {
+    @include font-size(14);
+    @include border-radius(3px);
+    @include box-shadow(inset 0 0 0 1px $wild-sand);
+    border: 0;
+    color: $black;
+    height: 40px;
+    padding: 6px 9px;
+    width: 100%;
+    vertical-align: bottom;
+
+    &:hover {
+        @include box-shadow(inset 0 0 0 1px $mine-shaft);
+    }
+
+    &:focus {
+        @include box-shadow(inset 0 0 0 1px $mine-shaft);
+    }
+}
+
+[type="checkbox"] {
+    margin: 0;
+}
+
+button {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    height: auto;
+    resize: vertical;
+}
+
+select {
+    @include font-size(13);
+    @include box-shadow(inset 0 0 0 1px $mine-shaft);
+    background: $white;
+    border: 0;
+    height: 40px;
+    padding: 6px 9px;
+
+    &:hover {
+        @include box-shadow(inset 0 0 0 1px $mine-shaft);
+    }
+
+    &:focus {
+        @include box-shadow(inset 0 0 0 2px $mine-shaft);
+    }
+}
